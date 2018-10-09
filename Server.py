@@ -2,8 +2,9 @@ import socket
 
 class Server:
   def __init__(self, sock=None):
-    self.refresh()
     self.sock=sock
+    self.refresh()
+    
 
   def refresh(self):
     self.rebuildSocket()

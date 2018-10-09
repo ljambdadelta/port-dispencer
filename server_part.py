@@ -3,7 +3,7 @@ import Logger
 import MalinaDB 
 
 server = Server.Server()
-log = Logger.Logger()
+logi = Logger.Logger()
 
 def parser(instructionWithArgument, position):
   if position is "INST":
@@ -16,16 +16,28 @@ def parser(instructionWithArgument, position):
 
 def formAnswer(rawrequest):
   instruction = parser(rawrequest,"INST")
-  argument = paeser(rawrequest,"POS")
+  argument = parser(rawrequest,"POS")
   if instruction is "ID":
     if argument is "REG":
-      log.write_to_log("user with ip"+server.l)
+      msg="user with ip"+server.currentSessionClientAddress
+      logi.write_to_log(msg)
+
     elif isinstance(argument, int) is True:
       print
     else:   
       print 
   elif instruction is "PORT":
-    if argument is "GET"
+    if argument is "GET":
+      print
     else:
-def main():
+      print
+def __init__():
+  print("Server wait")
   server.waitForConnection()
+  print("MDB create")
+  MDB=MalinaDB.MalinaDB()
+  print("MDB clean")
+  MDB.clean()
+  print("MDB test")
+  MDB.test()
+  print("end")
