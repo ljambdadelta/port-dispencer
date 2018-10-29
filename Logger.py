@@ -11,4 +11,5 @@ class Logger:
   def write_to_log(self, text):
     self.open_file_for_write()
     self.logfile_inst.write(text)
+    self.logfile_inst.write("\n")
     self.logfile_inst.close()

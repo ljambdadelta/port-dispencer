@@ -22,27 +22,28 @@ def parser(instructionWithArgument, position):
     position=-1 # невозможеое состояние
   return instructionWithArgument.split(" ")[position]
 
+def log_preambule():
+  msg="user with ip "+server.currentSessionClientAddress
+  logi.write_to_log(msg)
+
 def formAnswer(rawrequest):
   instruction = parser(rawrequest,"INST")
   argument = parser(rawrequest,"ARG")
-  if instruction is "ID":
-    if argument is "REG":
-      msg="user with ip"+server.currentSessionClientAddress
-      logi.write_to_log(msg)
-
-    elif isinstance(argument, int) is True:
-      print
-    else:   
-      print 
-  elif instruction is "PORT":
-    if argument is "GET":
-      print
-    else:
-      print
+  if instruction is "REG":
+    log_preambule()
+    logi.write_to_log("registration requested")
+    mdb.add_new_port(argument)
+    logi.write_to_log("registration done")
+  elif instruction is "GET":
+      logi.write_to_log(('(?) is requesting its port', argument))
+      po = mdb.get_port_by_id(argument)
+      logi.write_to_log(('It is (?)',po))
+  else:
+    logi.write_to_log(("It's sending garbage: (?)", rawrequest))
 
 def main():
   print("Server wait")
-  #server.waitForConnection()
+  server.waitForConnection()
   mdb.reset()
   #mdb.add_new_port('mid5')
   print(mdb.get_port_by_id('mid4'))

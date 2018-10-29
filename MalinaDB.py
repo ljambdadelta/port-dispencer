@@ -23,9 +23,10 @@ import mPorts, Logger
 
 # run_and_commit: без коммита инсерт не пушится в базу, велосипед для грабли
 
-logi = Logger.Logger()
+
 class MalinaDB: 
   def __init__(self, dbname):
+    self.logi = Logger.Logger()
     print("MDB create")
     self.dbname = dbname
     try:
@@ -76,7 +77,7 @@ class MalinaDB:
     try:
       port=self.cursor.fetchone()[0]
     except:
-      logi.write_to_log("No such ID in DB, adding...")
+      self.logi.write_to_log("No such ID in DB, adding...")
       self.add_new_port(malinaid)
       return self.get_port_by_id(malinaid)
     return port
@@ -87,9 +88,9 @@ class MalinaDB:
     if existFlag is False:
       self.last_id=self.last_id+1
       args= (malinaid, port)
-      self.run_and_commit(self.cursor.execute,('''INSERT INTO rel(malinaid,port) VALUES (?,?);''',args))
-      
-    else: print('port already assigned for this malina')
+      self.run_and_commit(self.cursor.execute,('''INSERT INTO rel(malinaid,port) VALUES (?,?);''',args)) 
+    else: 
+      self.logi.write_to_log(('port already assigned for this malina: (?)', malinaid))
 
   def get_last_id(self):
     return self.last_id
