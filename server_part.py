@@ -2,21 +2,29 @@ import Server
 import Logger
 import MalinaDB 
 
+
 server = Server.Server()
 logi = Logger.Logger()
+mdb=MalinaDB.MalinaDB('Malina.db')
+
+# сервер, логи и мдб -- должны быть видны глобально
+# parser: вычленяет из пейлоада либо инструкцию, либо аргумент. Кому-то не хватает дефайнов
+
+# formAnswer: пилим ответ на полученный аргумнетом запрос
+#TODO:
 
 def parser(instructionWithArgument, position):
   if position is "INST":
     position=0
-  if position is "POS":
+  if position is "ARG":
     position=1
   else:
-    position=-1 # Unsupported argument
+    position=-1 # невозможеое состояние
   return instructionWithArgument.split(" ")[position]
 
 def formAnswer(rawrequest):
   instruction = parser(rawrequest,"INST")
-  argument = parser(rawrequest,"POS")
+  argument = parser(rawrequest,"ARG")
   if instruction is "ID":
     if argument is "REG":
       msg="user with ip"+server.currentSessionClientAddress
@@ -31,13 +39,12 @@ def formAnswer(rawrequest):
       print
     else:
       print
-def __init__():
+
+def main():
   print("Server wait")
-  server.waitForConnection()
-  print("MDB create")
-  MDB=MalinaDB.MalinaDB()
-  print("MDB clean")
-  MDB.clean()
-  print("MDB test")
-  MDB.test()
+  #server.waitForConnection()
+  mdb.reset()
+  #mdb.add_new_port('mid5')
+  print(mdb.get_port_by_id('mid4'))
   print("end")
+main()

@@ -1,5 +1,20 @@
 import socket
 
+# Класс-интерфейс с малинами. Соединяемся/парсим.
+# __init__/refresh: Создаём сокет(пустой) и сразу его инициализируем, ожидаем tcp-поток
+# Инициализируем ничем все переменные.
+
+# rebuildSocket: убиваем старый сокет и создаём новый.
+
+# restart: пересоздаём сокет и привязываем его к порту из аргумента
+
+# waitForConnection: рестартим сокет. Собственно здесь мы и ждём подключений. С полученными
+# запросами работаем как с файлами
+
+# getIncomingDataContent: Как-то считывает пейлоад из сессии. Написано давно и забыто
+# Если работает, лучше не трогать
+#TODO: вспомнить, что я писал и зачем
+
 class Server:
   def __init__(self, sock=None):
     self.sock=sock
@@ -18,9 +33,9 @@ class Server:
       self.sock.close()
     self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-  def restart(self):
+  def restart(self, port):
     self.refresh()
-    self.sock.bind((socket.gethostname(), 911))
+    self.sock.bind((socket.gethostname(), port))
     self.sock.listen()
 
   def waitForConnection(self):
