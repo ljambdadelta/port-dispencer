@@ -38,8 +38,8 @@ class Server:
     self.sock.bind((socket.gethostname(), port))
     self.sock.listen()
 
-  def waitForConnection(self):
-    self.restart()
+  def waitForConnection(self,port):
+    self.restart(port)
     self.currentSession, self.currentSessionClientAddress = self.sock.accept()
     self.currentSession.setblocking(True) # Needed for treating socket as file
  

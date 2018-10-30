@@ -1,3 +1,4 @@
+#!/bin/python3
 import Server
 import Logger
 import MalinaDB 
@@ -42,8 +43,8 @@ def formAnswer(rawrequest):
     logi.write_to_log(("It's sending garbage: (?)", rawrequest))
 
 def main():
-  print("Server wait")
-  server.waitForConnection()
+  print("Server Wait")
+  server.waitForConnection(12921)
   mdb.reset()
   #mdb.add_new_port('mid5')
   print(mdb.get_port_by_id('mid4'))
