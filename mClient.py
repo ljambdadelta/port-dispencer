@@ -20,7 +20,8 @@ class mClient:
 
     def give_azport(self):
         self.connect()
-        port_from_db = int(self.read_answer().decode())
+        port_from_db = self.read_answer().decode()
+        print(port_from_db)
         self.connection.shutdown(socket.SHUT_RDWR)
         self.connection.close()
         if (port_from_db < 0) is True:
