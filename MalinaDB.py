@@ -63,7 +63,7 @@ class MalinaDB:
     print("MDB test")
     a=42
     b=5009
-    c="192.1.1.1"
+    #c="192.1.1.1"
     self.cursor.execute("INSERT INTO rel VALUES (?,?);", (a,b))
 
   def check_if_this_malinaid_has_assigned(self,malinaid):
