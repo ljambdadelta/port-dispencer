@@ -31,8 +31,9 @@ def log_preambule():
   logi.write_to_log(msg)
 
 def doAnswer(rawrequest):
-  instruction = parser(rawrequest,"INST")
-  argument = parser(rawrequest,"ARG")
+  srawrequest=rawrequest.decode()
+  instruction = parser(srawrequest,"INST")
+  argument = parser(srawrequest,"ARG")
   if instruction is "REG":
     log_preambule()
     logi.write_to_log("registration requested")
