@@ -58,5 +58,5 @@ class Server:
     self.endSession()
   
   def endSession(self):
-    self.currentSession.shutdown()
+    self.currentSession.shutdown(socket.SHUT_RDWR)
     self.currentSession.close()
