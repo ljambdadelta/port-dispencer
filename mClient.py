@@ -13,7 +13,7 @@ class mClient:
         print(self.boss_port)
         self.connection.connect((self.boss, self.boss_port))
         payload=("REG "+ self.i_am)
-        self.connection.sendall(payload)
+        self.connection.sendall(str.encode(payload))
 
     def read_answer(self):
         return self.connection.recv(1024)
