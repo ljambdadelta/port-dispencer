@@ -41,16 +41,17 @@ class Server:
   def waitForConnection(self,port):
     self.restart(port)
     self.currentSession, self.currentSessionClientAddress = self.sock.accept()
-    self.currentSession.setblocking(True) # Needed for treating socket as file
+    self.currentSession.setblocking(False) # Needed for treating socket as file
  
   def getIncomingDataContent(self):
     if self.currentSession is None:
       return None
     if self.currentSessionContent is not None:
       return self.currentSessionContent
-    self.currentSessionfile = self.currentSession.makefile()
-    self.currentSessionContent = self.currentSessionfile.read()
-    self.currentSessionfile.close()
+    #self.currentSessionfile = self.currentSession.makefile()
+    self.currentSessionContent = self.currentSession.recv(1024) #= self.currentSessionfile.read()
+    print self.currentSessionContent
+    #self.currentSessionfile.close()
     return self.currentSessionContent
 
   def sendAnswerToMalina(self,answer):

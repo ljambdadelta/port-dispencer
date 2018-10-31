@@ -14,16 +14,15 @@ class mClient:
         self.connection.connect((self.boss, self.boss_port))
         payload=("REG "+ self.i_am)
         self.connection.sendall(str.encode(payload))
+        
 
     def read_answer(self):
-        return self.connection.recv(1024)
+        return self.connection.recv(1024)   
 
     def give_azport(self):
         self.connect()
         port_from_db = self.read_answer().decode()
         print(port_from_db)
-        self.connection.shutdown(socket.SHUT_RDWR)
-        self.connection.close()
         if (port_from_db < 0) is True:
             return -1
         return port_from_db
