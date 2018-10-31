@@ -50,7 +50,7 @@ class Server:
       return self.currentSessionContent
     #self.currentSessionfile = self.currentSession.makefile()
     self.currentSessionContent = self.currentSession.recv(1024) #= self.currentSessionfile.read()
-    print self.currentSessionContent
+    print(self.currentSessionContent)
     #self.currentSessionfile.close()
     return self.currentSessionContent
 
