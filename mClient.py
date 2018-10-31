@@ -9,6 +9,8 @@ class mClient:
 
     def connect(self):
         self.connection=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        print(self.boss)
+        print(self.boss_port)
         self.connection.connect((self.boss, self.boss_port))
         payload=("REG "+ self.i_am)
         self.connection.sendall(payload)
