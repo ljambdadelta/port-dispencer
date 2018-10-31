@@ -53,4 +53,10 @@ class Server:
     self.currentSessionfile.close()
     return self.currentSessionContent
 
-  def sendAnswerToMalina(self):
+  def sendAnswerToMalina(self,answer):
+    self.currentSession.sendall(answer)
+    self.endSession()
+  
+  def endSession(self):
+    self.currentSession.shutdown()
+    self.currentSession.close()
