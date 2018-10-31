@@ -15,10 +15,13 @@ mdb=MalinaDB.MalinaDB('Malina.db')
 
 
 def parser(instructionWithArgument, position):
+  print("\n instruction is: %s" % instructionWithArgument)
   if position is "INST":
     position=0
+    print("\n instr: %s " % instructionWithArgument.split(" ")[position] )
   if position is "ARG":
     position=1
+    print("\n arg is: %s" % instructionWithArgument.split(" ")[position])
   else:
     position=-1 # невозможеое состояние
   return instructionWithArgument.split(" ")[position]
