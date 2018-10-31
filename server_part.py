@@ -38,13 +38,13 @@ def doAnswer(rawrequest):
     logi.write_to_log("registration done")
     sendAnswer(po)
   elif instruction is "GET":
-      logi.write_to_log(('(?) is requesting its port', argument))
+      logi.write_to_log('%s is requesting its port'% argument)
       po = mdb.get_port_by_id(argument)
-      logi.write_to_log(('It is (?)',po))
+      logi.write_to_log('It is %s'% po)
       sendAnswer(po)
       
   else:
-    logi.write_to_log(("It's sending garbage: (?)", rawrequest))
+    logi.write_to_log("It's sending garbage: %s"% rawrequest)
 
   def sendAnswer(answer):
     server.sendAnswerToMalina(answer)
