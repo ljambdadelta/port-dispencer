@@ -19,7 +19,7 @@ def parser(instructionWithArgument, position):
   if position is "INST":
     position=0
     print("\n instr: %s " % instructionWithArgument.split(" ")[position] )
-  if position is "ARG":
+  elif position is "ARG":
     position=1
     print("\n arg is: %s" % instructionWithArgument.split(" ")[position])
   else:
@@ -34,7 +34,7 @@ def doAnswer(rawrequest):
   srawrequest=rawrequest.decode()
   instruction = parser(srawrequest,"INST")
   argument = parser(srawrequest,"ARG")
-  if instruction is "REG":
+  if instruction is 'REG':
     log_preambule()
     logi.write_to_log("registration requested")
     mdb.add_new_port(argument)

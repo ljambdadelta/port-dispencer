@@ -41,7 +41,7 @@ class Server:
   def waitForConnection(self,port):
     self.restart(port)
     self.currentSession, self.currentSessionClientAddress = self.sock.accept()
-    self.currentSession.setblocking(False) # Needed for treating socket as file
+    self.currentSession.setblocking(True) # Needed for treating socket as file
  
   def getIncomingDataContent(self):
     if self.currentSession is None:
