@@ -28,7 +28,6 @@ class mPorts:
 
     def update_file(self):
         subprocess.run("./azure.sh")
-        subprocess.run("cp raw.ports cooked.ports -f")
 
     def extract_port(self):
         all_ports = self.get_list_ports_from_file("cooked.ports")
