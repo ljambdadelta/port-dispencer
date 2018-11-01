@@ -90,7 +90,7 @@ class MalinaDB:
       args= (malinaid, port)
       self.run_and_commit(self.cursor.execute,('''INSERT INTO rel(malinaid,port) VALUES (?,?);''',args)) 
     else: 
-      self.logi.write_to_log(('port already assigned for this malina: (?)', malinaid))
+      self.logi.write_to_log(('port already assigned for this malina: %s' % malinaid))
 
   def get_last_id(self):
     return self.last_id

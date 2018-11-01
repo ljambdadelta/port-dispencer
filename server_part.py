@@ -27,21 +27,21 @@ def parser(instructionWithArgument, position):
   return instructionWithArgument.split(" ")[position]
 
 def log_preambule():
-  msg="user with ip "+server.currentSessionClientAddress
+  msg="user with ip "+server.currentSessionClientAddress[0]
   logi.write_to_log(msg)
 
 def doAnswer(rawrequest):
   srawrequest=rawrequest.decode()
   instruction = parser(srawrequest,"INST")
   argument = parser(srawrequest,"ARG")
-  if instruction is 'REG':
+  if instruction == 'REG':
     log_preambule()
     logi.write_to_log("registration requested")
     mdb.add_new_port(argument)
     po = mdb.get_port_by_id(argument)
     logi.write_to_log("registration done")
     sendAnswer(po)
-  elif instruction is "GET":
+  elif instruction == "GET":
       logi.write_to_log('%s is requesting its port'% argument)
       po = mdb.get_port_by_id(argument)
       logi.write_to_log('It is %s'% po)
@@ -50,8 +50,9 @@ def doAnswer(rawrequest):
   else:
     logi.write_to_log("It's sending garbage: %s"% rawrequest)
 
-  def sendAnswer(answer):
-    server.sendAnswerToMalina(answer)
+def sendAnswer(answer):
+  print(answer)
+  server.sendAnswerToMalina(str(answer).encode())
 
 def main():
   print("Server Wait")
