@@ -21,6 +21,7 @@ if os.name == 'posix' and sys.version_info[0] < 3:
     import subprocess32 as subprocess
 else:
     import subprocess
+import MalinaDB
 
 class mPorts:
     def __init__(self):
@@ -28,6 +29,8 @@ class mPorts:
 
     def update_file(self):
         subprocess.run("./azure.sh")
+        mdb = MalinaDB.MalinaDB()
+        mdb.reset()
 
     def extract_port(self):
         all_ports = self.get_list_ports_from_file("cooked.ports")

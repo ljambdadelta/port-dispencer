@@ -27,7 +27,7 @@ import mPorts, Logger
 class MalinaDB: 
   def __init__(self, dbname):
     self.logi = Logger.Logger()
-    print("MDB create")
+    print("MDB connect")
     self.dbname = dbname
     try:
       self.db_conn = sqlite3.connect(self.dbname)
