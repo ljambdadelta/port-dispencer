@@ -32,6 +32,7 @@ class Server:
     if self.sock is not None:
       self.sock.close()
     self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
   def restart(self, port):
     self.rebuildSocket()
