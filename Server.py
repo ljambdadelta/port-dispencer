@@ -34,6 +34,7 @@ class Server:
     self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
   def restart(self, port):
+    self.rebuildSocket()
     self.refresh()
     self.sock.bind((socket.gethostname(), port))
     self.sock.listen()
@@ -61,3 +62,4 @@ class Server:
   def endSession(self):
     self.currentSession.shutdown(socket.SHUT_RDWR)
     self.currentSession.close()
+    self.sock.close()

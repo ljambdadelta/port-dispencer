@@ -46,18 +46,21 @@ def doAnswer(rawrequest):
       po = mdb.get_port_by_id(argument)
       logi.write_to_log('It is %s'% po)
       sendAnswer(po)
-      
   else:
     logi.write_to_log("It's sending garbage: %s"% rawrequest)
+  
 
 def sendAnswer(answer):
   print(answer)
   server.sendAnswerToMalina(str(answer).encode())
 
 def main():
-  print("Server Wait")
-  server.waitForConnection(12921)
-  doAnswer(server.getIncomingDataContent())
+  counter=0
+  while True:
+    counter+=1
+    print("Server Wait. Attempt %i" % counter)
+    server.waitForConnection(12921)
+    doAnswer(server.getIncomingDataContent())
   
   #mdb.reset()
   #mdb.add_new_port('mid5')
