@@ -4,7 +4,7 @@ class mClient:
     def __init__(self, boss, boss_port):
         self.boss = boss
         self.boss_port = boss_port
-        self.i_am = "malinoid000" #TODO: hostname by means of func
+        self.i_am =socket.gethostname() 
         self.connection = None
 
     def connect(self):

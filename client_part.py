@@ -3,7 +3,7 @@ import mClient
 
 def main():
     my_az_port=None
-    boss="192.168.1.142"
+    boss="10.78.0.10"
     boss_port=12921
     cli=mClient.mClient(str.encode(boss),boss_port)
     #cli.connect()
