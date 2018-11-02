@@ -1,5 +1,6 @@
 #!/bin/python3
 import mClient
+import time
 
 def main():
     boss="10.78.0.10"
@@ -9,6 +10,7 @@ def main():
         cli=mClient.mClient(str.encode(boss),boss_port)
         my_az_port=cli.give_azport()
         print(my_az_port)
+        time.sleep(1)
     
     
     
