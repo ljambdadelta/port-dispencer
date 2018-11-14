@@ -1,8 +1,12 @@
 #!/bin/python3
 import Server
 import Logger
-import MalinaDB 
-
+import MalinaDB
+import os,sys 
+if os.name == 'posix' and sys.version_info[0] < 3:
+    import subprocess32 as subprocess
+else:
+    import subprocess
 
 server = Server.Server()
 logi = Logger.Logger()
@@ -55,6 +59,8 @@ def sendAnswer(answer):
   server.sendAnswerToMalina(str(answer).encode())
 
 def main():
+  if subprocess.run("ps aux|grep server_part",text=True).stdout is not Null:
+    subprocess.run("killall server_part* -9")
   counter=0
   while True:
     counter+=1
