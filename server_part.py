@@ -59,7 +59,7 @@ def sendAnswer(answer):
   server.sendAnswerToMalina(str(answer).encode())
 
 def main():
-  pidlist=string.split(subprocess.run("ps aux|grep server_part| awk '{print $2}'", text=True, shell=True).stdout) 
+  pidlist=str.split(subprocess.run("ps aux|grep server_part| awk '{print $2}'", text=True, shell=True).stdout) 
   for pid in pidlist:
     if pid is not os.getppid():
       subprocess.run(("/bin/bash -c 'pkill -9 %i'", pid), shell=True)
