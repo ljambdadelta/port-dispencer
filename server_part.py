@@ -59,10 +59,18 @@ def sendAnswer(answer):
   server.sendAnswerToMalina(str(answer).encode())
 
 def main():
-  pidlist=string.split(subprocess.run("ps aux|grep server_part| awk '{print $2}'", text=True, shell=True).stdout) 
+  mypid=int(os.getpid())
+  print("I am server, my pid is %s"% mypid) 
+  pidlist=str.split(subprocess.run("ps aux|grep server_part| awk '{print $2}'", capture_output=True, text=True, shell=True).stdout) 
   for pid in pidlist:
-    if pid is not os.getppid():
-      subprocess.run(("/bin/bash -c 'pkill -9 %i'", pid), shell=True)
+    pid=int(pid)
+    print("pid of server: %s"% pid)
+    if pid < mypid:
+      print("%s != %s#" %(pid, mypid))
+      print("it's not me, killing active clone")
+      os.kill(pid, 9)
+    else:
+      print("Oh, it's one of mine pids, won't kill it")
   counter=0
   while True:
     counter+=1
