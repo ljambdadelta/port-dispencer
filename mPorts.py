@@ -29,8 +29,10 @@ class mPorts:
 
     def update_file(self):
         subprocess.run("./azure.sh")
-        mdb = MalinaDB.MalinaDB()
-        mdb.reset()
+
+    def cleanup(self):
+        md=MalinaDB.MalinaDB('Malina.db')
+        md.reset()	
 
     def extract_port(self):
         all_ports = self.get_list_ports_from_file("cooked.ports")
@@ -50,7 +52,7 @@ class mPorts:
 
     def trim_first_port_out_of_file(self, filename, all_ports):
         self.cooked_file = open(filename, 'w')
-        self.cooked_file.write( ' '.join(all_ports[1:]) )
+        self.cooked_file.write( '\n'.join(all_ports[1:]) )
         self.cooked_file.close()
         
 
