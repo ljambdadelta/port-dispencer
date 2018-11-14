@@ -62,7 +62,7 @@ def main():
   pidlist=subprocess.run("ps aux|grep server_part| awk '{print $2}'", text=True, shell=True).stdout 
   for pid in pidlist:
     if pid is not os.getppid():
-      subprocess.run(("/bin/bash -c 'pkill -9 %i'", pid) shell=True)
+      subprocess.run(("/bin/bash -c 'pkill -9 %i'", pid), shell=True)
   counter=0
   while True:
     counter+=1
