@@ -59,8 +59,8 @@ def sendAnswer(answer):
   server.sendAnswerToMalina(str(answer).encode())
 
 def main():
-  if subprocess.run("ps aux|grep server_part",text=True).stdout is not Null:
-    subprocess.run("killall server_part* -9")
+  if subprocess.run("bash -e 'ps aux|grep server_part'",text=True).stdout is not Null:
+    subprocess.run("bash -e 'killall server_part* -9'")
   counter=0
   while True:
     counter+=1
