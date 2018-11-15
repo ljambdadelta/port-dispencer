@@ -84,8 +84,8 @@ class MalinaDB:
   
   def add_new_port(self,malinaid):
     existFlag=self.check_if_this_malinaid_has_assigned(malinaid)
-    port = self.m_port.extract_port()
-    if existFlag is False:
+    if existFlag is False: 
+      port = self.m_port.extract_port()
       self.last_id=self.last_id+1
       args= (malinaid, port)
       self.run_and_commit(self.cursor.execute,('''INSERT INTO rel(malinaid,port) VALUES (?,?);''',args)) 
