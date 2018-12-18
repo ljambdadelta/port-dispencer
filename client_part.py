@@ -21,7 +21,7 @@ def main():
         except: 
             print("Error Occured. Maybe Server is down? Retrying...")
             continue
-    subprocess.run("cat /home/student/cred.lst | sed 's/PORT=[\"].....[\"]/PORT=50000/' > /home/student/alt.cred.lst" % my_az_port, shell="true" )
+    subprocess.run("cat /home/student/cred.lst | sed 's#PORT=\x22.....\x22#PORT=50000#' > /home/student/alt.cred.lst", shell="true" )
     subprocess.run("mv /home/student/alt.cred.lst /home/student/cred.lst", shell="true")
     subprocess.run("cat /home/student/cred.lst | sed 's/PORT=...../PORT=%i/' > /home/student/alt.cred.lst" % my_az_port, shell="true" )
     subprocess.run("mv /home/student/alt.cred.lst /home/student/cred.lst", shell="true")
